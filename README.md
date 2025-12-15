@@ -50,6 +50,10 @@ Experience a "Best of Best" portfolio that feels alive.
 
 A clean, scalable, and intuitive architecture designed for growth and performance.
 
+<div align="center">
+  <img src="public/assets/eigenfolio_quantum_structure_3d.png" alt="Eigenfolio Quantum 3D Architecture" width="100%" />
+</div>
+
 ```bash
 Eigenfolio-Quantum/
 ├── 📂 components/        # Core UI Building Blocks
