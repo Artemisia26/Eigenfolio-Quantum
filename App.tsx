@@ -39,10 +39,7 @@ import NotesApp from './components/apps/NotesApp';
 
 // ... (existing imports)
 
-// In renderAppContent switch:
-      case AppId.STICKY_NOTES: return <StickyNotesApp />;
-      case AppId.NOTES: return <NotesApp />;
-      case AppId.TASK_MANAGER: return <TaskManagerApp windows={windows} onCloseApp={closeWindow} />;
+
 import SettingsApp from './components/apps/SettingsApp';
 import TerminalApp from './components/apps/TerminalApp';
 import HoloFilesApp from './components/apps/HoloFilesApp';
@@ -290,8 +287,8 @@ const App: React.FC = () => {
     // Window Snapping Logic
     let newX = x;
     let newY = y;
-    let newWidth;
-    let newHeight;
+    let newWidth: number | undefined;
+    let newHeight: number | undefined;
     const snapMargin = 10;
 
     // Snap to Top (Maximize)
@@ -307,7 +304,7 @@ const App: React.FC = () => {
         newX = window.innerWidth / 2; newY = 0; newWidth = window.innerWidth / 2; newHeight = window.innerHeight - 80;
     }
 
-    if (newWidth) {
+    if (newWidth && newHeight) {
         setWindows(prev => prev.map(w => w.id === id ? { ...w, x: newX, y: newY, width: newWidth, height: newHeight } : w));
     } else {
         setWindows(prev => prev.map(w => w.id === id ? { ...w, x, y } : w));
@@ -360,6 +357,7 @@ const App: React.FC = () => {
       case AppId.STICKY_NOTES: return <StickyNotesApp />;
       case AppId.TASK_MANAGER: return <TaskManagerApp windows={windows} onCloseApp={closeWindow} />;
       case AppId.RECYCLE_BIN: return <RecycleBinApp fileSystem={fileSystem} onUpdateFileSystem={setFileSystem} />;
+      case AppId.NOTES: return <NotesApp />;
       // New Apps
       case AppId.CALENDAR: return <CalendarApp />;
       case AppId.CLOCK: return <ClockApp />;

@@ -1,8 +1,10 @@
 {
+  "build": {
+    "env": {
+      "ENABLE_FILE_SYSTEM": "true"
+    }
+  },
   "framework": "vite",
-  "buildCommand": "npm run build",
-  "outputDirectory": "dist",
-  "cleanUrls": true,
   "rewrites": [
     { "source": "/(.*)", "destination": "/index.html" }
   ]

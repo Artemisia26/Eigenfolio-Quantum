@@ -1,15 +1,11 @@
 ﻿/**
- * EIGENFOLIO QUANTUM - Quantum Browser Application
- * 
- * Developed by: Ashraf Morningstar (https://github.com/AshrafMorningstar)
- * Repository: https://github.com/AshrafMorningstar/Eigenfolio-Quantum
- * 
- * Features:
- * - Iframe embedding with Proxy Simulation
- * - History and Bookmarks
- * - Tabbed Browsing
- * 
- * © 2025 Ashraf Morningstar. All Rights Reserved.
+ * @file QuantumBrowserApp.tsx
+ * @author Ashraf Morningstar <https://github.com/AshrafMorningstar>
+ * @copyright 2025 Ashraf Morningstar
+ * @license MIT
+ *
+ * 🌌 Eigenfolio Quantum - The Neural-Interface Operating System
+ * "The future is unwritten, but the code is compiled."
  */
 
 import React, { useState } from 'react';
