@@ -1,4 +1,14 @@
 /**
+ * @file DiskUtilityApp.tsx
+ * @author Ashraf Morningstar <https://github.com/AshrafMorningstar>
+ * @copyright 2025 Ashraf Morningstar
+ * @license MIT
+ *
+ * 🌌 Eigenfolio Quantum - The Neural-Interface Operating System
+ * "The future is unwritten, but the code is compiled."
+ */
+
+/**
  * EIGENFOLIO QUANTUM - Disk Utility Application
  * 
  * Developed by: Ashraf Morningstar (https://github.com/AshrafMorningstar)

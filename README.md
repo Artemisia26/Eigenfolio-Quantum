@@ -18,21 +18,21 @@
 
 ---
 
-## ðŸš€ Overview
+## 🚀 Overview
 
 **Eigenfolio Quantum** is not just a portfolio; it's a **fully functional, browser-based operating system simulation**. Built with the latest web technologies, it features a robust window management system, a virtual file system, real-time applications, and a premium "Glassmorphism" UI that pushes the boundaries of what's possible in a web browser.
 
-### âœ¨ Key Features
+### ✨ Key Features | Why This is The Best Portfolio on GitHub?
 
-- **ðŸ–¥ï¸ Desktop Environment**: Fully draggable, resizable, and minimizable windows with Z-index management.
-- **ðŸŒŸ Nebula Dock**: An interactive, magnifying dock inspired by macOS, powered by Framer Motion.
-- **ðŸ› ï¸ Virtual File System**: Create, edit, delete, and restore files. Includes a fully functional **Recycle Bin**.
-- **â˜€ï¸ Real-Time Weather**: Fetches live weather data based on city search (with robust fallback modes).
-- **ðŸ§ Sticky Notes**: Persistent sticky notes with color customization and local storage.
-- **ðŸŒ Quantum Browser**: A simulated web browser with iframe embedding and security proxy simulation.
-- **ðŸŽµ Music Player**: Integrated audio player with playlist support.
-- **ðŸ”’ Lock Screen**: Secure entry point with biometric simulation.
-- **ðŸ” ï¸ Spotlight Search**: Global system search for apps and files.
+- **🖥️ Ultimate Desktop Environment**: Experience a fully draggable, resizable, and minimizable window system with **advanced Z-index management**.
+- **🚀 Nebula Dock**: A pixel-perfect, interactive, magnifying dock inspired by macOS, powered by **Framer Motion spring physics**.
+- **📂 Virtual File System (VFS)**: A real in-browser file system. Create `files`, edit `content`, delete to `Trash`, and restore.
+- **⚠️ Real-Time AI Integration**: Interact with **NeuroAI**, a chatbot powered by Gemini that can analyze images and suggest code.
+- **☀️ Dynamic Weather Engine**: Fetches real-time weather data for any city on Earth with stunning CSS-based atmospheric effects.
+- **🎨 Glassmorphism & Neomorphism**: State-of-the-art UI design using backdrop-filters and complex gradients for a **Premium** feel.
+- **🔐 Biometric Lock Screen**: Secure entry point with facial recognition simulation.
+- **🔍 Global Spotlight Search**: Press `Cmd + Space` to search files, apps, and even web queries instantly.
+- **📱 100% Responsive**: Works perfectly on Desktop, Tablet, and Mobile.
 
 ---
 
@@ -49,6 +49,8 @@
 ---
 
 ## 🔮 Quantum Architecture (3D Structure)
+
+![Quantum Holographic Architecture](public/assets/quantum_architecture.png)
 
 The system is built on a **Hyper-Modular Neural Architecture**, designed to scale infinitely.
 

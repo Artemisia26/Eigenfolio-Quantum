@@ -39,10 +39,7 @@ import NotesApp from './components/apps/NotesApp';
 
 // ... (existing imports)
 
-// In renderAppContent switch:
-      case AppId.STICKY_NOTES: return <StickyNotesApp />;
-      case AppId.NOTES: return <NotesApp />;
-      case AppId.TASK_MANAGER: return <TaskManagerApp windows={windows} onCloseApp={closeWindow} />;
+
 import SettingsApp from './components/apps/SettingsApp';
 import TerminalApp from './components/apps/TerminalApp';
 import HoloFilesApp from './components/apps/HoloFilesApp';
@@ -79,6 +76,7 @@ import { PagesApp, NumbersApp, KeynoteApp } from './components/apps/OfficeApps';
 import { HomeApp, FindMyApp, PodcastsApp, DictionaryApp, TranslateApp, FacetimeApp } from './components/apps/LifestyleApps';
 import GitHubApp from './components/apps/GitHubApp';
 import TicTacToeApp from './components/apps/TicTacToeApp';
+import QuantumChessApp from './components/apps/QuantumChessApp';
 import AppStoreApp from './components/apps/AppStoreApp';
 
 import { AppId, WindowState, VirtualFile, WallpaperId } from './types';
@@ -131,7 +129,7 @@ const App: React.FC = () => {
 
     // Load Settings
     const savedTheme = localStorage.getItem('eigen_theme');
-    if (savedTheme) setTheme(savedTheme as any);
+    if (savedTheme) setTheme(savedTheme as 'dark' | 'light');
 
     // Load Window Session (Optional - enabled for realism)
     const savedSession = localStorage.getItem('eigen_session');
@@ -200,7 +198,7 @@ const App: React.FC = () => {
         addToast("Error", "Neural Link (Speech Recognition) not supported.");
         return;
     }
-    const SpeechRecognition = (window as any).webkitSpeechRecognition;
+    const SpeechRecognition = (window as any).webkitSpeechRecognition || (window as any).SpeechRecognition;
     const recognition = new SpeechRecognition();
     recognition.continuous = false;
     recognition.lang = 'en-US';
@@ -246,7 +244,7 @@ const App: React.FC = () => {
     if (existing && !data) {
         focusWindow(existing.id);
         if (existing.isMinimized) {
-            setWindows(prev => prev.map(w => w.id === existing.id ? { ...w, isMinimized: false } : w));
+            setWindows((prev: WindowState[]) => prev.map(w => w.id === existing.id ? { ...w, isMinimized: false } : w));
         }
         return;
     }
@@ -282,15 +280,15 @@ const App: React.FC = () => {
 
   const focusWindow = (id: string) => {
     setActiveWindowId(id);
-    setWindows(prev => prev.map(w => w.id === id ? { ...w, zIndex: getMaxZIndex() + 1 } : w));
+    setWindows((prev: WindowState[]) => prev.map(w => w.id === id ? { ...w, zIndex: getMaxZIndex() + 1 } : w));
   };
 
   const moveWindow = (id: string, x: number, y: number) => {
     // Window Snapping Logic
     let newX = x;
     let newY = y;
-    let newWidth;
-    let newHeight;
+    let newWidth: number | undefined;
+    let newHeight: number | undefined;
     const snapMargin = 10;
 
     // Snap to Top (Maximize)
@@ -306,7 +304,7 @@ const App: React.FC = () => {
         newX = window.innerWidth / 2; newY = 0; newWidth = window.innerWidth / 2; newHeight = window.innerHeight - 80;
     }
 
-    if (newWidth) {
+    if (newWidth && newHeight) {
         setWindows(prev => prev.map(w => w.id === id ? { ...w, x: newX, y: newY, width: newWidth, height: newHeight } : w));
     } else {
         setWindows(prev => prev.map(w => w.id === id ? { ...w, x, y } : w));
@@ -344,6 +342,7 @@ const App: React.FC = () => {
       case AppId.PROJECTS: return <ProjectsApp />;
       case AppId.NEURO_AI: return <NeuroAIApp />;
       case AppId.MATTER_SHAPER: return <MatterShaperApp />;
+      case AppId.GITHUB: return <GitHubApp />;
       case AppId.QUANTUM_CHESS: return <QuantumChessApp />;
       case AppId.TERMINAL: return <TerminalApp fileSystem={fileSystem} onUpdateFileSystem={setFileSystem} />;
       case AppId.HOLO_FILES: return <HoloFilesApp fileSystem={fileSystem} onOpenFile={handleOpenFile} onNavigate={() => {}} onUpdateFileSystem={setFileSystem} />;
@@ -354,10 +353,11 @@ const App: React.FC = () => {
       case AppId.CALCULATOR: return <CalculatorApp />;
       case AppId.NEURAL_CAM: return <NeuralCamApp />;
       case AppId.WEATHER: return <WeatherApp />;
-      case AppId.SETTINGS: return <SettingsApp theme={theme} toggleTheme={() => setTheme(t => t === 'dark' ? 'light' : 'dark')} currentWallpaper={wallpaper} setWallpaper={setWallpaper} />;
+      case AppId.SETTINGS: return <SettingsApp theme={theme} toggleTheme={() => setTheme((t: 'dark' | 'light') => t === 'dark' ? 'light' : 'dark')} currentWallpaper={wallpaper} setWallpaper={setWallpaper} />;
       case AppId.STICKY_NOTES: return <StickyNotesApp />;
       case AppId.TASK_MANAGER: return <TaskManagerApp windows={windows} onCloseApp={closeWindow} />;
       case AppId.RECYCLE_BIN: return <RecycleBinApp fileSystem={fileSystem} onUpdateFileSystem={setFileSystem} />;
+      case AppId.NOTES: return <NotesApp />;
       // New Apps
       case AppId.CALENDAR: return <CalendarApp />;
       case AppId.CLOCK: return <ClockApp />;
@@ -377,6 +377,7 @@ const App: React.FC = () => {
       case AppId.BOOKS: return <BooksApp />;
       case AppId.VOICE_MEMOS: return <VoiceMemosApp />;
       case AppId.CHESS: return <ChessApp />;
+      case AppId.QUANTUM_CHESS: return <QuantumChessApp />;
       case AppId.MINESWEEPER: return <MinesweeperApp />;
       case AppId.SUDOKU: return <SudokuApp />;
       case AppId.PAGES: return <PagesApp />;
@@ -500,7 +501,7 @@ const App: React.FC = () => {
                     <h5 className="font-bold text-sm text-neuro-purple dark:text-quantum-glow">{toast.title}</h5>
                     <p className="text-xs text-gray-600 dark:text-gray-300 mt-1">{toast.message}</p>
                   </div>
-                  <button onClick={() => setToasts(t => t.filter(x => x.id !== toast.id))} className="text-gray-400 hover:text-white"><X size={14}/></button>
+                  <button onClick={() => setToasts((t: Toast[]) => t.filter(x => x.id !== toast.id))} className="text-gray-400 hover:text-white"><X size={14}/></button>
               </div>
           ))}
       </div>
@@ -616,7 +617,7 @@ const App: React.FC = () => {
                             />
                         </div>
                     </div>
-                    <button onClick={() => setTheme(t => t === 'dark' ? 'light' : 'dark')} className="w-full py-2 bg-white/10 rounded-lg flex items-center justify-center gap-2 text-sm hover:bg-white/20">
+                    <button onClick={() => setTheme((t: 'dark' | 'light') => t === 'dark' ? 'light' : 'dark')} className="w-full py-2 bg-white/10 rounded-lg flex items-center justify-center gap-2 text-sm hover:bg-white/20">
                         {theme === 'dark' ? <Moon size={14}/> : <Sun size={14}/>} Toggle Theme
                     </button>
                 </div>

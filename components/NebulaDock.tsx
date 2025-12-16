@@ -124,6 +124,7 @@ export const apps: AppConfig[] = [
   { id: AppId.KEYNOTE, icon: MonitorPlay, name: 'Keynote', defaultSize: { width: 900, height: 700 }, color: 'text-blue-500' },
   { id: AppId.TICTACTOE, icon: Gamepad2, name: 'Tic Tac Toe', defaultSize: { width: 400, height: 500 }, color: 'text-cyan-400' },
   { id: AppId.GITHUB, icon: Github, name: 'GitHub Pro', defaultSize: { width: 1000, height: 800 }, color: 'text-white' },
+];
 
 const NebulaDock: React.FC<NebulaDockProps> = ({ openApps, onOpenApp }) => {
   return (
